@@ -22,7 +22,7 @@ url: http://166.111.5.246:8080/upload
 
 ## Wechat Frontend
 
-Code to select and send an image from wechat frontend to this api:
+Code to select, send an image, and get the predicted result:
 
 ```javascript
 // index.js
@@ -33,9 +33,9 @@ Code to select and send an image from wechat frontend to this api:
 chooseImg: function () {
   var that = this
   wx.chooseImage({
-    count: 1, // 默认9  
-    sizeType: ['original', 'compressed'], // 可以指定是原图还是压缩图，默认二者都有  
-    sourceType: ['album', 'camera'], // 可以指定来源是相册还是相机，默认二者都有  
+    count: 1,                                   // 默认9  
+    sizeType: ['original', 'compressed'],       // 可以指定是原图还是压缩图，默认二者都有  
+    sourceType: ['album', 'camera'],            // 可以指定来源是相册还是相机，默认二者都有  
     success: function (res) {
       // 返回选定照片的本地文件路径列表，tempFilePath可以作为img标签的src属性显示图片  
       var tempFilePaths = res.tempFilePaths
@@ -59,13 +59,15 @@ uploadImg: function () {
       console.log('准备上传...')
       wx.uploadFile({
         url: 'http://166.111.5.246:8080/upload', //接口地址
-        filePath: filePath,//文件路径
-        name: 'file',//文件名，不要修改，Flask直接读取
+        filePath: filePath,                      //文件路径
+        name: 'file',                            //文件名，不要修改，Flask直接读取
         formData: {
           'user': 'test'
-        }, // 其他表单数据，如地理位置、标题、内容介绍等
+                                                 // 其他表单数据，如地理位置、简介等
+        }, 
         success: function (res) {
           var data = res.data
+          console.log('Result: ' + res.data)     // 返回的预测结果，如"校史馆"
           console.log('上传成功...')
         }
       })        
