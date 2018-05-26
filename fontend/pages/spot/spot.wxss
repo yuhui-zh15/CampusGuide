@@ -35,19 +35,16 @@
   /* background-color: orange; */
 }
 
-.standard {
-  width: 400rpx;
+.longabstract {
+  font-size: 35rpx;
+  color: darkgray;
+  width: 90%;
   height: 400rpx;
-  border-radius: 100%;
-   background-color: yellow; 
+  /* background-color: yellow;  */
+  padding-top: 20rpx;
 }
 
 .photo image {
-  height: 100%;
-  width: 100%;
-}
-
-.standard image {
   height: 100%;
   width: 100%;
 }

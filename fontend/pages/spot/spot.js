@@ -8,7 +8,7 @@ Page({
     photo: "",
     predict: null,
     description: null,
-    standard: null
+    longabstract: null
   },
 
   getData: function () {
@@ -18,7 +18,7 @@ Page({
       photo: result.photo,
       predict: result.predict,
       description: result.description,
-      standard: result.standard
+      longabstract: result.longabstract,
     })
   },
 

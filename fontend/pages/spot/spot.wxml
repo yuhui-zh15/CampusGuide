@@ -4,8 +4,6 @@
   </view>
   <view class="predict">{{predict}}</view>
   <view class="description">{{description}}</view>
-  <view class="standard">
-    <image src="{{standard}}"></image>
-  </view>
+  <view class="longabstract">{{longabstract}}</view>  
 </view>  
 
