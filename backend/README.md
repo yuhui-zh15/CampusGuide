@@ -5,7 +5,7 @@
 ```
 test/
     init.py: Generate *.npy from images (of standard size), 
-             must be executed before training if the images are changed.
+             must be executed before testing if the images are changed.
     main.py: Test the model and generate a markdown.
 
 webapi/
