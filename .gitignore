@@ -1,0 +1,9 @@
+**.pyc
+**.png
+**.trash/
+images/
+model/
+dataset/
+backend/**.png
+backend/**.md
+
