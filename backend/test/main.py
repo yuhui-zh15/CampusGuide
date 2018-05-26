@@ -1,8 +1,7 @@
 #encoding=utf-8
 usage = """
-Usage: 
-    # Please run `init.py` first to generate *.npy from raw images.
-    (campus_guide)$ CUDA_VISIBLE_DEVICES=[gpu_id] python -m test.main [model_epoch_number]
+Usage: If the *test* images are changed, please first run `init.py`.
+    (backend)$ CUDA_VISIBLE_DEVICES=[gpu_id] python -m test.main [model_epoch_number]
 """
 import sys
 from collections import defaultdict
