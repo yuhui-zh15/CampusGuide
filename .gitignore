@@ -1,6 +1,7 @@
 **.pyc
 **.swp
 **.trash/
+images/
 model/
 dataset/
 backend/**.png
