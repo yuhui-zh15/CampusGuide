@@ -5,9 +5,11 @@ Usage:
 
 #encoding=utf-8
 import time
+import json
 
 import cv2
 import numpy as np
+import flask
 from flask import Flask, Response
 from flask import request
 
@@ -23,8 +25,12 @@ def upload():
     data = fin.read()
     img = cv2.imdecode(np.fromstring(data, dtype=np.uint8), cv2.IMREAD_COLOR)
     predicted = ModelWrapper.predict(img)
-    print 'predicted:', predicted
-    return app.make_response(predicted)
+    assets = json.load(open('webapi/assets.json'))
+    resp = assets[predicted.decode('utf-8')]
+    resp.update({'predicted': predicted})
+    resp = flask.jsonify(resp)
+    print resp
+    return resp
 
 
 if __name__ == '__main__':
