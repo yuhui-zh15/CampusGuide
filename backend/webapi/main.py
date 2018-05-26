@@ -14,7 +14,11 @@ def upload():
     print 'uploading...'
     fin =  request.files['file']
     data = fin.read()
-    img = cv2.imdecode(np.fromstring(data, dtype=np.uint8), -1)
+
+    tmp_path = '.debug/input.jpg'
+    with open(tmp_path, 'wb') as fout:
+        fout.write(data)
+    img = cv2.imread(tmp_path)
     predicted = ModelWrapper.predict(img)
     print 'predicted:', predicted
     return app.make_response(predicted)

@@ -1,5 +1,6 @@
 #encoding=utf-8
 import numpy as np
+import cv2
 from PIL import Image
 import tensorflow as tf
 from keras import backend as K
@@ -21,40 +22,23 @@ class ModelWrapper(object):
     
     @staticmethod
     def normalize(img):
-        img = img[:, :, ::-1]   # BGR -> RGB
-        img = Image.fromarray(img)
-        std_width, std_height = 360, 640
-        width, height = img.size
-        scale_x = std_width / float(width)
-        scale_y = std_height / float(height)
-        scale = max(scale_x, scale_y)
-        img = img.resize((int(width * scale + 0.5), int(height * scale + 0.5)), 
-                Image.ANTIALIAS)
-        width, height = img.size
-        left = (width - std_width) / 2
-        top = (height - std_height) / 2
-        right = (width + std_width) / 2
-        bottom = (height + std_height) / 2
-        img = img.crop((left, top, right, bottom))
-        img.save('a.png')
-        X = np.array(img)
-        return np.array([X - 128.0 / 255.0])
+        img = (cv2.resize(img, (360, 640)) - 128.0) / 255.0
+        cv2.imwrite('.debug/norm.png', )
+        return np.array([img])
 
 
     @classmethod
     def predict(cls, img):
         with cls.graph.as_default():
             X = cls.normalize(img)
-            y = cls.model.predict(X)
+            return id2building[np.argmax(cls.model.predict(X)[0])]
 
-            #*******************DEBUG*********************
-            inputs = cls.model.input
-            outputs = [layer.output for layer in cls.model.layers]
-            functors = [K.function([inputs], [out]) for out in outputs]
-            layer_outs = [func([X]) for func in functors]
-            print layer_outs
-            #*******************DEBUG*********************
 
-            predicted = np.argmax(y, axis=1)[0]
-            building = id2building[predicted]
-            return building
+if __name__ == '__main__':
+    # img_name = '../images/test/1_qingfen_mini/qingfen_1.png'
+    img_name = '.debug/input.jpg'
+    img = cv2.imread(img_name)
+    print img.dtype
+    img = np.array([(cv2.resize(img, (360, 640)) - 128.0) / 255.0])
+    print id2building[np.argmax(ModelWrapper.model.predict(img)[0])]
+
