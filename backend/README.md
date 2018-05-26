@@ -11,7 +11,7 @@ test/
 webapi/
     model_wrapper.py: A wrapper for the model.
              Accepts an OpenCV-format image (channels: BGR, not RGB) of *Any* size.
-    main.py: An ad-hoc api for wechat frontend, see webapi/README.md for usage.
+    main.py: An ad-hoc api for wechat frontend, see webapi/README.md for details.
 
 init.py: Generate *.npy from images (of standard size), 
              must be executed before training if the images are changed.
@@ -23,5 +23,5 @@ main.py: Trains the model.
 
 ## Usage
 
-See `main.py`s for comments on usage.
+See the `main.py`s for comments on usage.
 
