@@ -1,9 +1,7 @@
 #encoding=utf-8
 import numpy as np
 import cv2
-from PIL import Image
 import tensorflow as tf
-from keras import backend as K
 
 from utils import load_config, id2building
 from model import model_fn
@@ -22,6 +20,9 @@ class ModelWrapper(object):
     
     @staticmethod
     def normalize(img):
+        """
+        cropping and zero-centering
+        """
         std_width, std_height = 360, 640
         height, width, _ = img.shape
         scale_x = std_width / float(width)

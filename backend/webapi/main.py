@@ -1,3 +1,8 @@
+"""
+Usage:
+    (backend)$ CUDA_VISIBLE_DEVICES=[gpu_id] python -m webapi.main
+"""
+
 #encoding=utf-8
 import time
 

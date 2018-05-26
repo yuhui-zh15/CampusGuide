@@ -1,3 +1,8 @@
+"""
+Usage: If the images are changed, please first run `init.py`.
+    (backend)$ CUDA_VISIBLE_DEVICES=[gpu_id] python main.py
+"""
+
 from sklearn.cross_validation import KFold
 
 import utils
