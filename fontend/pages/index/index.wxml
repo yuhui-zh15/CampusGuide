@@ -1,9 +1,7 @@
-<text>index.wxml</text>  
 <view class="">  
-  <form bindsubmit="uploadImg">  
-    <label bindtap="chooseImg">点击选择图片</label>  
-    <image src="{{photos}}"></image>  
-    <button form-type="submit">提交</button>
-    <button bindtap="debug">debug</button>   
+  <form bindsubmit="uploadImg"> 
+    <image mode="widthFix" src="{{photos}}" ></image>
+    <button bindtap="chooseImg">选择图片</button>
+    <button form-type="submit" style="background-color: #0cba9f;">提交</button>
   </form>  
 </view>
