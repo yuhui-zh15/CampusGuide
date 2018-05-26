@@ -29,13 +29,13 @@ Page({
             'user': 'test'
           }, // 其他表单数据，如地理位置、标题、内容介绍等
           success: function (res) {
-            var data = res.data
+            var data = JSON.parse(res.data)
             wx.switchTab({url: '../spot/spot'})
             var result = {
               'photo': filePath,
-              'predict': data,
-              'description': '景昃鸣禽集，水木湛清华', // [TODO] 每个景物的标语
-              'longabstract': '清华大学第六教学楼简称六教，又称为裕元楼，是清华最新、规模最大的教学楼，位于清华主楼的西北侧。六教由清华大学建筑设计研究院叶彪设计，2002年始建，2003年9月竣工，总建筑面积3.4万平方米，超越原有五座教学楼建筑面积总和', // [TODO] 每个景物的简介
+              'predict': data.predicted,
+              'description': data.description,
+              'longabstract': data.longabstract,
               'standard': null // [TODO] 标准模板图片
             }
             wx.setStorageSync('result', result)

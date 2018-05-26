@@ -1,2 +1,13 @@
-<!--pages/share/share.wxml-->
-<text>pages/share/share.wxml</text>
+<view class="container">
+  <view class="processedphoto">
+    <image src="{{photo}}"></image>
+  </view>
+  <view class="save">
+    <cover-image src="../../images/save.png"></cover-image>
+  </view>
+  <view class="refresh">
+    <cover-image src="../../images/refresh.png"></cover-image>
+  </view>
+
+</view>  
+

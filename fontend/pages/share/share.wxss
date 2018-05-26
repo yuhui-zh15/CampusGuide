@@ -1,1 +1,37 @@
-/* pages/share/share.wxss */
+/**index.wxss**/
+.container {
+  height: 1140rpx;
+}
+
+.processedphoto {
+  /* position: absolute; */
+  height: 900rpx;
+  width: 100%;
+  background-color: gray; 
+}
+
+.save {
+  position: absolute;
+  height: 80rpx;
+  width: 80rpx;
+  bottom: 45rpx; 
+  left: 25%;
+}
+
+.refresh {
+  position: absolute;
+  height: 80rpx;
+  width: 80rpx;
+  bottom: 45rpx; 
+  left: 65%;
+}
+
+
+
+
+
+
+
+
+
+
