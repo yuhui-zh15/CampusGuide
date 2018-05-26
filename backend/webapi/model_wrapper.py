@@ -22,62 +22,15 @@ class ModelWrapper(object):
     
     @staticmethod
     def normalize(img):
-        # img = cv2.resize(img, (360, 640))
-        # img = Image.fromarray(img)
-        # std_width, std_height = 360, 640
-        # width, height = img.size
-        # scale_x = std_width / float(width)
-        # scale_y = std_height / float(height)
-        # scale = max(scale_x, scale_y)
-        # img = img.resize((int(width * scale + 0.5), int(height * scale + 0.5)), 
-        #         Image.ANTIALIAS)
-        # width, height = img.size
-        # left = (width - std_width) / 2
-        # top = (height - std_height) / 2
-        # right = (width + std_width) / 2
-        # bottom = (height + std_height) / 2
-        # img = img.crop((left, top, right, bottom))
-        # img.save('a.png')
-        # X = np.array(img)
-        # return np.array([img - 128.0 / 255.0])
-        return np.array([(cv2.resize(img, (360, 640)) - 128.0) / 255.0])
+        img = (cv2.resize(img, (360, 640)) - 128.0) / 255.0
+        cv2.imwrite('.debug/norm.png', )
+        return np.array([img])
 
 
     @classmethod
     def predict(cls, img):
         with cls.graph.as_default():
             X = cls.normalize(img)
-
-            #*******************DEBUG*********************
-            def print_layer(layer_idx):
-                inputs_op = cls.model.input
-                print cls.model.layers[layer_idx].name
-                output_op = cls.model.layers[layer_idx].output
-                output_fn = K.function([inputs_op], [output_op])
-                output = output_fn([X])[0][0]
-                print output.shape
-
-                if output.ndim == 3:    # CNN layer
-                    for channel_idx in xrange(output.shape[-1]):
-                        channel = output[:, :, channel_idx]
-                        mi, mx = np.min(channel), np.max(channel)
-                        if mi == mx:
-                            print 'layer:', layer_idx, 'channel:', channel_idx, 'value:', mx
-                            continue
-                        else:
-                            print 'layer:', layer_idx, 'channel:', channel_idx, 'max:', mx, 'min:', mi, 'mean:', np.mean(channel)
-                        channel = ((channel - mi) / float(mx - mi)) * 255
-                        cv2.imwrite('.debug/%d-%d.png' % (layer_idx, channel_idx), channel)
-                else:
-                    print output
-                print
-
-            # print_layer(1)
-            # print_layer(4)
-            # print_layer(9)
-            # print_layer(10)
-            #*******************DEBUG*********************
-
             return id2building[np.argmax(cls.model.predict(X)[0])]
 
 
