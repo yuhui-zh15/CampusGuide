@@ -1,0 +1,55 @@
+/**index.wxss**/
+.container {
+  height: 1140rpx;
+}
+
+.photo {
+  /* position: absolute; */
+  height: 450rpx;
+  width: 100%;
+  /* background-color: gray; */
+}
+
+.result {
+  /* position: absolute; */
+  height: 190rpx;
+  width: 100%;
+  /* background-color: green; */
+}
+
+.predict {
+  margin-top: 20rpx;
+  font-size: 60rpx;
+  text-align: center;
+  height: 100rpx;
+  width: 100%;
+  /* background-color: pink; */
+}
+
+.description {
+  font-size: 40rpx;
+  color: gray;
+  text-align: center; 
+  height: 80rpx;
+  width: 100%;
+  /* background-color: orange; */
+}
+
+.longabstract {
+  font-size: 35rpx;
+  color: darkgray;
+  width: 90%;
+  height: 400rpx;
+  /* background-color: yellow;  */
+  padding-top: 20rpx;
+}
+
+.photo image {
+  height: 100%;
+  width: 100%;
+}
+
+
+
+
+

@@ -1,0 +1,9 @@
+<view class="container">
+  <view class="photo">
+    <image src="{{photo}}"></image>
+  </view>
+  <view class="predict">{{predict}}</view>
+  <view class="description">{{description}}</view>
+  <view class="longabstract">{{longabstract}}</view>  
+</view>  
+

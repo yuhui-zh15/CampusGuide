@@ -1,12 +1,48 @@
 {
   "pages":[
     "pages/index/index",
-    "pages/logs/logs"
+    "pages/logs/logs",
+    "pages/spot/spot",
+    "pages/share/share",
+    "pages/me/me"
   ],
   "window":{
-    "backgroundTextStyle":"light",
-    "navigationBarBackgroundColor": "#fff",
-    "navigationBarTitleText": "WeChat",
-    "navigationBarTextStyle":"black"
+    "backgroundColor": "#31a030",
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#4bbc93",
+    "navigationBarTitleText": "乐游",
+    "navigationBarTextStyle": "light"
+  },
+  "tabBar":{
+    "color":"#666",
+    "selectedColor":"#31a030",
+    "backgroundColor":"#FFF",
+    "borderStyle":"black",
+    "list":[
+      {
+        "pagePath":"pages/index/index",
+        "text":"遇见",
+        "iconPath":"images/meet.png",
+        "selectedIconPath":"images/meet_selected.png"
+      },
+      {
+        "pagePath":"pages/spot/spot",
+        "text":"风景",
+        "iconPath":"images/scene.png",
+        "selectedIconPath":"images/scene_selected.png"
+      },
+      {
+        "pagePath":"pages/share/share",
+        "text":"分享",
+        "iconPath": "images/share.png",
+        "selectedIconPath": "images/share_selected.png"
+      },
+      {
+        "pagePath": "pages/me/me",
+        "text": "我",
+        "iconPath": "images/me.png",
+        "selectedIconPath": "images/me_selected.png"
+      }
+    ]
   }
 }

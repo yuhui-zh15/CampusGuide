@@ -5,8 +5,47 @@ Page({
    * 页面的初始数据 
    */
   data: {
-    photos: ""
+    photos: "",
+    latitude: 0, //纬度 
+    longitude: 0 //经度 
   },
+
+  /** 
+  * 上传照片 
+  */
+  uploadImg: function () {
+    var that = this;
+    var filePath = that.data.photos[0]
+    console.log(filePath)
+    wx.getImageInfo({
+      src: filePath,
+      success: function (res) {
+        console.log('准备上传...')
+        wx.uploadFile({
+          url: 'http://166.111.5.246:8080/upload', //接口地址
+          filePath: filePath,//文件路径
+          name: 'file',//文件名，不要修改，Flask直接读取
+          formData: {
+            'user': 'test'
+          }, // 其他表单数据，如地理位置、标题、内容介绍等
+          success: function (res) {
+            var data = JSON.parse(res.data)
+            wx.switchTab({url: '../spot/spot'})
+            var result = {
+              'photo': filePath,
+              'predict': data.predicted,
+              'description': data.description,
+              'longabstract': data.longabstract,
+              'standard': null // [TODO] 标准模板图片
+            }
+            wx.setStorageSync('result', result)
+            console.log('上传成功...' + data)
+          }
+        })
+      }
+    })
+  },
+
   /** 
    * 选择照片 
    */
@@ -22,34 +61,25 @@ Page({
         that.setData({
           photos: tempFilePaths
         })
+        that.uploadImg()
         console.log('上传图片:' + that.data.photos)
       }
     })
   },
-  /** 
- * 上传照片 
- */
-  uploadImg: function () {
-    var filePath = this.data.photos[0]
-    console.log(filePath)
-    wx.getImageInfo({
-      src: filePath,
+
+  getLocation: function() {
+    var that = this;
+    wx.getLocation({
+      type: 'gcj02', //返回可以用于wx.openLocation的经纬度
       success: function (res) {
-        console.log('准备上传...')
-        wx.uploadFile({
-          url: 'http://166.111.5.246:8080/upload', //接口地址
-          filePath: filePath,//文件路径
-          name: 'file',//文件名，不要修改，Flask直接读取
-          formData: {
-            'user': 'test'
-          }, // 其他表单数据，如地理位置、标题、内容介绍等
-          success: function (res) {
-            var data = res.data
-            console.log('上传成功...')
-          }
-        })        
+        var latitude = res.latitude
+        var longitude = res.longitude
+        that.setData({
+          latitude: latitude, //纬度 
+          longitude: longitude, //经度 
+        })
       }
-    })  
+    })
   },
 
   /**
@@ -71,5 +101,9 @@ Page({
         console.log('submit complete');
       }
     })  
+  },
+
+  onLoad: function (options) {
+    this.getLocation()
   }
 })  

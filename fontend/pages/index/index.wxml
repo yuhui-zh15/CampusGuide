@@ -1,7 +1,7 @@
-<view class="">  
-  <form bindsubmit="uploadImg"> 
-    <image mode="widthFix" src="{{photos}}" ></image>
-    <button bindtap="chooseImg">选择图片</button>
-    <button form-type="submit" style="background-color: #0cba9f;">提交</button>
-  </form>  
-</view>
+<view class="container">
+  <map show-location latitude="{{latitude}}" longitude="{{longitude}}">
+    <cover-view class="upload">
+      <cover-image src="../../images/photo.png" bindtap="chooseImg"></cover-image>
+    </cover-view>
+  </map>
+</view>  
