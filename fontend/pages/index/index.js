@@ -14,7 +14,8 @@ Page({
   * 上传照片 
   */
   uploadImg: function () {
-    var filePath = this.data.photos[0]
+    var that = this;
+    var filePath = that.data.photos[0]
     console.log(filePath)
     wx.getImageInfo({
       src: filePath,
@@ -29,7 +30,15 @@ Page({
           }, // 其他表单数据，如地理位置、标题、内容介绍等
           success: function (res) {
             var data = res.data
-            console.log('上传成功...')
+            wx.switchTab({url: '../spot/spot'})
+            var result = {
+              'photo': filePath,
+              'predict': data,
+              'description': '景昃鸣禽集，水木湛清华', // [TODO] 每个景物的标语
+              'standard': null // [TODO] 标准模板图片
+            }
+            wx.setStorageSync('result', result)
+            console.log('上传成功...' + data)
           }
         })
       }

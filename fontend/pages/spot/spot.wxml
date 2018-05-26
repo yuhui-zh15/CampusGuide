@@ -1,2 +1,11 @@
-<!--pages/spot/spot.wxml-->
-<text>pages/spot/spot.wxml</text>
+<view class="container">
+  <view class="photo">
+    <image src="{{photo}}"></image>
+  </view>
+  <view class="predict">{{predict}}</view>
+  <view class="description">{{description}}</view>
+  <view class="standard">
+    <image src="{{standard}}"></image>
+  </view>
+</view>  
+
