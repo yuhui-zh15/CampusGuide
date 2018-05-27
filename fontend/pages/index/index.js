@@ -17,6 +17,8 @@ Page({
     var that = this;
     var filePath = that.data.photos[0]
     console.log(filePath)
+    var openid = wx.getStorageSync('openid')
+    console.log('in index.js: openid:' + openid)
     wx.getImageInfo({
       src: filePath,
       success: function (res) {
@@ -26,7 +28,8 @@ Page({
           filePath: filePath,//文件路径
           name: 'file',//文件名，不要修改，Flask直接读取
           formData: {
-            'user': 'test'
+            'user': 'test',
+            'openid': openid
           }, // 其他表单数据，如地理位置、标题、内容介绍等
           success: function (res) {
             var data = JSON.parse(res.data)

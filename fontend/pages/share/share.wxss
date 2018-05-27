@@ -4,10 +4,15 @@
 }
 
 .processedphoto {
-  /* position: absolute; */
+  position: absolute; 
   height: 900rpx;
   width: 100%;
-  background-color: gray; /* [TODO] For processed image, height:weight should similar with this */
+  /* background-color: gray;  [TODO] For processed image, height:weight should similar with this  */
+}
+
+.processedphoto .image {
+  height: 100%;
+  width: 100%;
 }
 
 .save {
