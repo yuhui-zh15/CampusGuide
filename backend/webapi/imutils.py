@@ -5,11 +5,6 @@ from PIL import Image
 import numpy as np
 
 
-def to_unicode(string):
-    if isinstance(string, str):
-        return string.decode('utf-8')
-    return string
-
 
 def cv2pil(img):
     return Image.fromarray(img[:, :, ::-1])

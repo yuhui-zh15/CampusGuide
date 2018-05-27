@@ -7,7 +7,13 @@ import numpy as np
 from PIL import Image, ImageFont, ImageDraw
 
 from webapi import ASSETS_DIR, ASSETS_FONTS_DIR, ASSETS_IMAGES_DIR, ASSETS_TEMPLATE_DIR
-from webapi import utils
+import webapi.imutils
+
+
+def to_unicode(string):
+    if isinstance(string, str):
+        return string.decode('utf-8')
+    return string
 
 
 def draw_ellipse(image, bounds, width=1, outline='white', antialias=5):
@@ -76,10 +82,10 @@ abbr2full = {
 
 def preprocess(data):
     img = data['img']
-    img = utils.cv2pil(img)
-    predicted = utils.to_unicode(data['predicted'])
-    title = utils.to_unicode(abbr2full[predicted])
-    description = utils.to_unicode(data['description'])
+    img = imutils.cv2pil(img)
+    predicted = to_unicode(data['predicted'])
+    title = to_unicode(abbr2full[predicted])
+    description = to_unicode(data['description'])
     return img, predicted, title, description
 
 
@@ -102,7 +108,7 @@ def render_v2(data):
     img, predicted, title, description = preprocess(data)
 
     canvas = Image.open(ASSETS_TEMPLATE_DIR + '2.png')
-    canvas.paste(utils.crop(img, std_size=(983, 691), mode='PIL'), (48, 806))
+    canvas.paste(imutils.crop(img, std_size=(983, 691), mode='PIL'), (48, 806))
 
     border = Image.open(ASSETS_TEMPLATE_DIR + 'border.png')
     canvas.paste(border, (0, 0), mask=border)

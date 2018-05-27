@@ -5,7 +5,7 @@ import tensorflow as tf
 
 from utils import load_config, id2building
 from model import model_fn
-from webapi import utils
+import webapi.imutils
 
 
 class ModelWrapper(object):
@@ -24,7 +24,7 @@ class ModelWrapper(object):
         """
         cropping and zero-centering
         """
-        img = utils.crop(img, std_size=(360, 640))
+        img = imutils.crop(img, std_size=(360, 640))
         img = (img - 128.0) / 255.0
         return np.array([img])
 
