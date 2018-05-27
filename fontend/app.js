@@ -34,8 +34,8 @@ App({
                   'content-type': 'application/json'
                 },
                 success: function (res) {
-                  wx.setStorageSync('openId', res.data.openId)
-                  console.log('获取用户信息成功：openId:' + res.data.openid)
+                  wx.setStorageSync('openid', res.data.openid)
+                  console.log('获取用户信息成功：openid:' + res.data.openid)
                 }
               })
             }
