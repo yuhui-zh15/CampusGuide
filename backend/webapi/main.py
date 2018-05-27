@@ -67,9 +67,6 @@ def share():
     assert option >= 0 and option < len(render_fn), 'Invalid option: %d' % option
     share_img = render_fn[option](data)
     share_img_encode = cv2.imencode('.jpg', share_img)[1].tostring()
-    cv2.imwrite('share_img.jpg', share_img)
-    with open('share_img_encode.jpg', 'wb') as fout:
-        fout.write(share_img_encode)
     return app.make_response(share_img_encode)
 
 

@@ -57,14 +57,20 @@ font2file = {
 }
 
 
-def typewrite(img, text, pos, font_size, font='kai', align='left'):
+def typewrite(img, text, pos, font_size, font='kai', align='left', max_len=786):
+    font_name = font
     font_rgba = (0, 0, 0, 255)
-    font = ImageFont.truetype(font=ASSETS_FONTS_DIR + font2file[font], size=font_size)
+    font = ImageFont.truetype(font=ASSETS_FONTS_DIR + font2file[font_name], size=font_size)
     drawer = ImageDraw.Draw(img)
+    text_width, text_height = drawer.textsize(text, font=font)
+    if text_width > max_len:
+        font_size = int(font_size * max_len / float(text_width))
+        font = ImageFont.truetype(font=ASSETS_FONTS_DIR + font2file[font_name], size=font_size)
+        text_width = max_len
+
     if align == 'left':
         drawer.text(pos, text, font=font, fill=font_rgba)
     else:
-        text_width, text_height = drawer.textsize(text, font=font)
         start = pos[0] - text_width, pos[1]
         drawer.text(start, text, font=font, fill=font_rgba)
 
@@ -93,10 +99,10 @@ def render_v1(data):
     img, predicted, title, description = preprocess(data)
 
     canvas = Image.open(ASSETS_TEMPLATE_DIR + '1.png')
-    canvas.paste(utils.crop(img, std_size=(982, 982), mode='PIL'), (44, 49))
+    canvas.paste(imutils.crop(img, std_size=(982, 982), mode='PIL'), (44, 49))
 
     typewrite(canvas, title, (44, 1209), font_size=90)
-    typewrite(canvas, description, (50, 1365), font_size=45)
+    typewrite(canvas, description, (50, 1365), font_size=45, max_len=970)
 
     profile = Image.open(ASSETS_IMAGES_DIR + predicted + '.jpg')
     circlemask(profile, canvas, (688, 838), 180)
@@ -114,12 +120,11 @@ def render_v2(data):
     canvas.paste(border, (0, 0), mask=border)
 
     typewrite(canvas, title, (924, 290), font_size=107, align='right', font='msyhl')
-    typewrite(canvas, description, (924, 460), font_size=50, align='right', font='msyhl')
+    typewrite(canvas, description, (924, 460), font_size=50, align='right', font='msyhl', max_len=786)
 
     today = datetime.date.today().strftime('%b %d, %Y')
     typewrite(canvas, today, (916, 600), font_size=45, align='right', font='lishu')
 
-    canvas.save('canvas.png')
     return imutils.pil2cv(canvas)
 
 
