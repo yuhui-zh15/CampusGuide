@@ -5,14 +5,44 @@ Page({
    * 页面的初始数据
    */
   data: {
-  
+    photo: "",
+    predict: null,
+    description: null,
+    longabstract: null,
+  },
+
+  getData: function () {
+    var that = this
+    var result = wx.getStorageSync('result')
+    that.setData({
+      photo: result.photo,
+      predict: result.predict,
+      description: result.description,
+      longabstract: result.longabstract,
+    })
+  },
+
+  downloadImg: function () {
+    var that = this
+    wx.downloadFile({
+      url: "http://166.111.5.246:8080/share",
+      success: function (res) {
+        console.log('downloadFile success, res is', res)
+        that.setData({
+          photo: res.tempFilePath
+        })
+      },
+      fail: function ({ errMsg }) {
+        console.log('downloadFile fail, err is:', errMsg)
+      }
+    })
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-  
+    this.getData()
   },
 
   /**
