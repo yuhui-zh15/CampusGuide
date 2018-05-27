@@ -14,6 +14,7 @@ from flask import Flask, Response
 from flask import request
 
 from model_wrapper import ModelWrapper
+from webapi import ASSETS_DIR
 
 
 app = Flask(__name__)
@@ -25,10 +26,11 @@ def upload():
     data = fin.read()
     img = cv2.imdecode(np.fromstring(data, dtype=np.uint8), cv2.IMREAD_COLOR)
     predicted = ModelWrapper.predict(img)
-    assets = json.load(open('webapi/assets.json'))
+    assets = json.load(open(ASSETS_DIR + 'assets.json'))
     resp = assets[predicted.decode('utf-8')]
     resp.update({'predicted': predicted})
     resp = flask.jsonify(resp)
+    print predicted
     print resp
     return resp
 
