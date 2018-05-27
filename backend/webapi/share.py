@@ -101,7 +101,7 @@ def render_v1(data):
     profile = Image.open(ASSETS_IMAGES_DIR + predicted + '.jpg')
     circlemask(profile, canvas, (688, 838), 180)
 
-    canvas.save('a.png')
+    return imutils.pil2cv(canvas)
 
 
 def render_v2(data):
@@ -119,7 +119,11 @@ def render_v2(data):
     today = datetime.date.today().strftime('%b %d, %Y')
     typewrite(canvas, today, (916, 600), font_size=45, align='right', font='lishu')
 
-    canvas.convert('RGB').save('b.jpg') 
+    canvas.save('canvas.png')
+    return imutils.pil2cv(canvas)
+
+
+render_fn = [render_v1, render_v2]
 
 
 if __name__ == '__main__':

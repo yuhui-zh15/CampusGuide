@@ -11,7 +11,7 @@ def cv2pil(img):
 
 
 def pil2cv(img):
-    return np.array(img)[:, :, ::-1]
+    return np.array(img.convert('RGB'))[:, :, ::-1].copy()
 
 
 def crop(img, std_size, mode='CV'):
