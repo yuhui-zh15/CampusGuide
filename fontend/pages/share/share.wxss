@@ -10,9 +10,10 @@
   /* background-color: gray;  [TODO] For processed image, height:weight should similar with this  */
 }
 
-.processedphoto .image {
+.processedphoto image {
+  margin-left: 7.5%;
   height: 100%;
-  width: 100%;
+  width: 85%;
 }
 
 .save {

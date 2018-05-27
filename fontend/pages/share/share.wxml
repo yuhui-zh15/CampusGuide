@@ -2,7 +2,7 @@
   <view class="processedphoto">
     <image src="{{photo}}"></image>
   </view>
-  <cover-view class="save" bindtap="downloadImg" style="background-color:#4bbc93">
+  <cover-view class="save" bindtap="downloadImg">
     <cover-image src="../../images/save.png"></cover-image>
   </cover-view>
   <cover-view class="refresh">
