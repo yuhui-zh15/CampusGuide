@@ -5,7 +5,7 @@ import tensorflow as tf
 
 from utils import load_config, id2building
 from model import model_fn
-import webapi.imutils
+from webapi import imutils
 
 
 class ModelWrapper(object):
