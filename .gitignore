@@ -2,6 +2,7 @@
 **.swp
 **.psd
 **.trash/
+**.cache/
 images/
 model/
 dataset/
