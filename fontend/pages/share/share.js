@@ -26,7 +26,6 @@ Page({
     var that = this
     var openid = wx.getStorageSync('openid')
     var option = 1
-    console.log("http://166.111.5.246:8080/share?" + "openid=" + openid + "&option=" + option)
     wx.downloadFile({
       url: "http://166.111.5.246:8080/share?" + "openid=" + openid + "&option=" + option,
       success: function (res) {
