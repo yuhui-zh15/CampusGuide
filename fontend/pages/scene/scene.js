@@ -1,32 +1,23 @@
-// pages/spot/spot.js
+// pages/scene/scene.js
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    photo: "../../images/demo/shuimuqinghua.jpg",
-    predict: "水木清华",
-    description: "景昃鸣禽集，水木湛清华",
-    longabstract: "水木清华是北京清华园中最著名的景点，位于清华大学工字厅的北侧。清华园的名字即来源于此，被称作清华园“园中之园”。水木清华的主体景观是工字厅后面的一个荷塘，荷塘之畔垂杨山水之中掩映着一幢秀雅的古建筑，常与颐和园中的谐趣园相比。"
-  },
-
-  getData: function () {
-    var that = this
-    var result = wx.getStorageSync('result')
-    that.setData({
-      photo: result.photo,
-      predict: result.predict,
-      description: result.description,
-      longabstract: result.longabstract,
-    })
+    predict1: "水木清华",
+    predict2: "第六教学楼",
+    predict3: "第三教学楼",
+    photo1: "../../images/demo/shuimuqinghua.jpg",
+    photo2: "../../images/demo/diliujiaoxuelou.jpg",
+    photo3: "../../images/demo/disanjiaoxuelou.jpg"
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    this.getData()
+  
   },
 
   /**
@@ -40,7 +31,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    this.getData()
+  
   },
 
   /**

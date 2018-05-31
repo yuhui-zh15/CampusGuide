@@ -1,0 +1,26 @@
+<view class="container">
+  <view class="photo">
+    <view class="left">
+    {{predict1}}
+    </view>
+    <view class="right">
+    <image src="{{photo1}}"></image>
+    </view>
+  </view>
+  <view class="photo">
+    <view class="left">
+    {{predict2}}
+    </view>  
+    <view class="right">
+    <image src="{{photo2}}"></image>
+    </view>
+  </view>
+  <view class="photo">
+    <view class="left">
+    {{predict3}}
+    </view>
+    <view class="right">
+    <image src="{{photo3}}"></image>
+    </view>
+  </view>
+</view>  

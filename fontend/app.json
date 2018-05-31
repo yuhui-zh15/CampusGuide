@@ -1,6 +1,7 @@
 {
   "pages":[
     "pages/index/index",
+    "pages/scene/scene",
     "pages/logs/logs",
     "pages/spot/spot",
     "pages/share/share",
@@ -21,9 +22,15 @@
     "list":[
       {
         "pagePath":"pages/index/index",
+        "text":"识图",
+        "iconPath":"images/camera.png",
+        "selectedIconPath":"images/camera_selected.png"
+      },
+      {
+        "pagePath":"pages/scene/scene",
         "text":"遇见",
         "iconPath":"images/meet.png",
-        "selectedIconPath":"images/meet_selected.png"
+        "selectedIconPath": "images/meet_selected.png"
       },
       {
         "pagePath":"pages/spot/spot",

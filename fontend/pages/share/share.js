@@ -5,7 +5,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-    photo: "",
+    photo: "../../images/demo/poster.jpg",
     predict: null,
     description: null,
     longabstract: null,
