@@ -22,10 +22,29 @@ Page({
     })
   },
 
+  getRandomInt: function (max) {
+    return Math.floor(Math.random() * Math.floor(max));
+  },
+
   downloadImg: function () {
     var that = this
+    wx.saveImageToPhotosAlbum({
+      filePath: that.data.photo,
+      success: function (res) {
+        console.log(res)
+      },
+      fail: function (res) {
+        console.log(res)
+        console.log('fail')
+      }
+    })
+  },
+
+  refreshImg: function () {
+    var that = this
     var openid = wx.getStorageSync('openid')
-    var option = 1
+    var option = that.getRandomInt(2)
+
     wx.downloadFile({
       url: "http://166.111.5.246:8080/share?" + "openid=" + openid + "&option=" + option,
       success: function (res) {
@@ -44,7 +63,8 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    this.getData()
+    // this.getData()
+    this.refreshImg()
   },
 
   /**

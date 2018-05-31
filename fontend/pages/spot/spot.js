@@ -6,9 +6,9 @@ Page({
    */
   data: {
     photo: "",
-    predict: null,
-    description: null,
-    longabstract: null
+    predict: "上传一张图片吧",
+    description: "",
+    longabstract: ""
   },
 
   getData: function () {

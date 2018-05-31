@@ -5,7 +5,7 @@
   <cover-view class="save" bindtap="downloadImg">
     <cover-image src="../../images/save.png"></cover-image>
   </cover-view>
-  <cover-view class="refresh">
+  <cover-view class="refresh" bindtap="refreshImg">
     <cover-image src="../../images/refresh.png"></cover-image>
   </cover-view>
 
