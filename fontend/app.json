@@ -1,10 +1,10 @@
 {
   "pages":[
     "pages/index/index",
-    "pages/scene/scene",
     "pages/logs/logs",
     "pages/spot/spot",
     "pages/share/share",
+    "pages/scene/scene",
     "pages/me/me"
   ],
   "window":{
@@ -27,12 +27,6 @@
         "selectedIconPath":"images/camera_selected.png"
       },
       {
-        "pagePath":"pages/scene/scene",
-        "text":"遇见",
-        "iconPath":"images/meet.png",
-        "selectedIconPath": "images/meet_selected.png"
-      },
-      {
         "pagePath":"pages/spot/spot",
         "text":"风景",
         "iconPath":"images/scene.png",
@@ -43,6 +37,12 @@
         "text":"分享",
         "iconPath": "images/share.png",
         "selectedIconPath": "images/share_selected.png"
+      },
+      {
+        "pagePath":"pages/scene/scene",
+        "text":"遇见",
+        "iconPath":"images/meet.png",
+        "selectedIconPath": "images/meet_selected.png"
       },
       {
         "pagePath": "pages/me/me",
