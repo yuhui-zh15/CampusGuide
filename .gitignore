@@ -3,7 +3,6 @@
 **.psd
 **.trash/
 **.cache/
-images/
 model/
 dataset/
 backend/**.png
