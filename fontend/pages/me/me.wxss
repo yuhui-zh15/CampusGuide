@@ -21,5 +21,13 @@
 }
 
 .usermotto {
-  margin-top: 100px;
+  margin: 30rpx;
+  margin-top: 100rpx;
+  padding-left: 30rpx;
+  padding-right: 30rpx;
+}
+
+.user-motto {
+  color: gray;
+  size: 30rpx;
 }

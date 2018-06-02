@@ -1,26 +1,19 @@
+<!--pages/image/demo3/index.wxml-->
 <view class="container">
-  <view class="photo">
-    <view class="left">
-    {{predict1}}
+    <view class="content">
+        <view class="img-list3">
+            <view class="ul">
+                <view class="li" wx:for="{{imgList}}" wx:for-item="item">
+                    <navigator url="url">
+                        <view class="image"><image src="{{item.src}}" ></image></view>
+
+                        <view class="info">
+                            <text>{{item.info}}</text>
+                        </view>
+
+                    </navigator>
+                </view>
+            </view>
+        </view>
     </view>
-    <view class="right">
-    <image src="{{photo1}}"></image>
-    </view>
-  </view>
-  <view class="photo">
-    <view class="left">
-    {{predict2}}
-    </view>  
-    <view class="right">
-    <image src="{{photo2}}"></image>
-    </view>
-  </view>
-  <view class="photo">
-    <view class="left">
-    {{predict3}}
-    </view>
-    <view class="right">
-    <image src="{{photo3}}"></image>
-    </view>
-  </view>
-</view>  
+</view>

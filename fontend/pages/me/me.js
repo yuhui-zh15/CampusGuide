@@ -2,7 +2,7 @@ const app = getApp()
 
 Page({
   data: {
-    motto: '欢迎使用乐游App！',
+    motto: '欢迎来到清华大学！\n\n水木清华，钟灵毓秀，恰如清华园工字厅内对联所书——“槛外山光，历春夏秋冬、万千变幻，都非凡境；窗中云影，任东西南北、去来澹荡，洵是仙居”。',
     userInfo: {},
     hasUserInfo: false,
     canIUse: wx.canIUse('button.open-type.getUserInfo')
