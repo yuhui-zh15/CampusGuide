@@ -7,29 +7,31 @@ from keras.preprocessing import image
 from keras.applications.vgg19 import preprocess_input
 from keras.optimizers import SGD, Adam
 from keras.layers import Dense, Activation, Convolution2D, MaxPooling2D, Flatten
+from keras.layers.normalization import BatchNormalization
 
 
 def model_fn(config):
     model = Sequential()
     model.add(Convolution2D(                        # 0
         batch_input_shape=(None, config.height, config.width, 3),
-        filters=32,
-        kernel_size=5,
+        filters=128,
+        kernel_size=16,
         strides=1,
         padding='same'     # Padding method
     ))
     model.add(Activation('relu'))                   # 1
 
+    pool_size = 4
     model.add(MaxPooling2D(                         # 2
-        pool_size=4,
-        strides=4,
+        pool_size=pool_size,
+        strides=pool_size,
         padding='same'    # Padding method
     ))
 
     # 160 x 90 x 32
     model.add(Convolution2D(                        # 3
-        batch_input_shape=(None, config.height/4, config.width/4, 32),
-        filters=64,
+        batch_input_shape=(None, config.height/pool_size, config.width/pool_size, 64),
+        filters=256,
         kernel_size=5,
         strides=1,
         padding='same'     # Padding method
@@ -44,7 +46,7 @@ def model_fn(config):
 
     # 32 x 18 x 64
     model.add(Flatten())                            # 6
-    model.add(Dense(1024))                          # 7
+    model.add(Dense(1024))  
     model.add(Activation('relu'))                   # 8
     model.add(Dense(config.num_of_class))           # 9
     model.add(Activation('softmax'))                # 10

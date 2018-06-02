@@ -10,7 +10,7 @@ import imutils
 import utils
 
 config = utils.load_config()
-image_names = glob.glob("../images/test0601_x6/*/*.JPG")
+image_names = glob.glob("../images/test/*/*.png")
 
 X = []
 y = []

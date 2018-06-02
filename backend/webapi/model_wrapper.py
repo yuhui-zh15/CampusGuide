@@ -11,7 +11,7 @@ import imutils
 class ModelWrapper(object):
     config = load_config()
     model = model_fn(config)
-    model_path = '../model/%s-%d' % (config.model_name, 5)
+    model_path = '../model/best/%s-%d' % (config.model_name, 5)
     model.load_weights(model_path)
     # Hack: This fixes a keras bug with TF backend in async environment,
     # see https://github.com/keras-team/keras/issues/2397 for details.
@@ -19,12 +19,12 @@ class ModelWrapper(object):
     print 'successfully loaded model from: %s' % model_path
 
     
-    @staticmethod
-    def normalize(img):
+    @classmethod
+    def normalize(cls, img):
         """
         cropping and zero-centering
         """
-        img = imutils.crop(img, std_size=(360, 640))
+        img = imutils.crop(img, std_size=(cls.config.width, cls.config.height))
         img = (img - 128.0) / 255.0
         return np.array([img])
 

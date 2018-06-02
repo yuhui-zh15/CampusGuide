@@ -1,8 +1,4 @@
 #encoding=utf-8
-usage = """
-Usage: If the *test* images are changed, please first run `init.py`.
-    (backend)$ CUDA_VISIBLE_DEVICES=[gpu_id] python -m test.main [model_epoch_number]
-"""
 import sys
 from collections import defaultdict
 
@@ -46,10 +42,17 @@ def gen_markdown(correct, wrong):
                 fout.write('![img](%s)\n\n' % (id))
 
 
+def get_args():
+    import argparse
+    parser = argparse.ArgumentParser()
+    parser.add_argument('-epoch', type=int, required=True)
+    parser.add_argument('-mode', type=str, choices=['one', 'all'], required=True)
+    args = parser.parse_args()
+    return args
+
+
 if __name__ == '__main__':
-    if len(sys.argv) < 2:
-        print usage
-        sys.exit(1)
+    args = get_args()
 
     X = np.load(X_path)
     y = np.load(y_path)
@@ -57,35 +60,37 @@ if __name__ == '__main__':
     config = load_config()
 
     model = model_fn(config)
-    for epoch in xrange(20):
-        model.load_weights('../model/%s-%d' % (config.model_name, epoch))
+
+    if args.mode == 'all':
+        for epoch in xrange(20):
+            model.load_weights('../model/%s-%d' % (config.model_name, epoch))
+
+            score = model.evaluate(X, y)
+            print 'epoch:', epoch
+            print 'score:', score
+    else:
+        model.load_weights('../model/best/%s-%d' % (config.model_name, args.epoch))
 
         score = model.evaluate(X, y)
-        print 'epoch:', epoch
         print 'score:', score
 
-    # model.load_weights('../model/%s-%d' % (config.model_name, int(sys.argv[1])))
+        correct = []
+        wrong = []
+        prediction = model.predict(X)
+        for predicted, label, id in zip(prediction.tolist(), y.tolist(), ids.tolist()):
+            expected = np.argmax(label)
+            predicted = np.argmax(predicted)
+            item = (id, expected, predicted)
+            if expected == predicted:
+                correct.append(item)
+            else:
+                wrong.append(item)
 
-    # score = model.evaluate(X, y)
-    # print 'score:', score
+        print 'correct:'
+        for id, expected, predicted in correct:
+            print id, 'expected =', id2building[expected], 'predicted =', id2building[predicted]
+        print 'wrong:'
+        for id, expected, predicted in wrong:
+            print id, 'expected =', id2building[expected], 'predicted =', id2building[predicted]
 
-    # correct = []
-    # wrong = []
-    # prediction = model.predict(X)
-    # for predicted, label, id in zip(prediction.tolist(), y.tolist(), ids.tolist()):
-    #     expected = np.argmax(label)
-    #     predicted = np.argmax(predicted)
-    #     item = (id, expected, predicted)
-    #     if expected == predicted:
-    #         correct.append(item)
-    #     else:
-    #         wrong.append(item)
-
-    # print 'correct:'
-    # for id, expected, predicted in correct:
-    #     print id, 'expected =', id2building[expected], 'predicted =', id2building[predicted]
-    # print 'wrong:'
-    # for id, expected, predicted in wrong:
-    #     print id, 'expected =', id2building[expected], 'predicted =', id2building[predicted]
-
-    # gen_markdown(correct, wrong)
+        gen_markdown(correct, wrong)
