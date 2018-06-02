@@ -9,12 +9,12 @@ from collections import defaultdict
 import numpy as np
 
 from utils import load_config, id2building
-from model import model_fn
+from model import model_fn, model_vgg19_fn
 
 
-X_path = '../dataset/test/data_X.npy'
-y_path = '../dataset/test/data_y.npy'
-ids_path = '../dataset/test/data_ids.npy'
+X_path = '../dataset/test/data_X_x6.npy'
+y_path = '../dataset/test/data_y_x6.npy'
+ids_path = '../dataset/test/data_ids_x6.npy'
 
 
 def gen_markdown(correct, wrong):
@@ -57,28 +57,35 @@ if __name__ == '__main__':
     config = load_config()
 
     model = model_fn(config)
-    model.load_weights('../model/%s-%d' % (config.model_name, int(sys.argv[1])))
+    for epoch in xrange(20):
+        model.load_weights('../model/%s-%d' % (config.model_name, epoch))
 
-    score = model.evaluate(X, y)
-    print 'score:', score
+        score = model.evaluate(X, y)
+        print 'epoch:', epoch
+        print 'score:', score
 
-    correct = []
-    wrong = []
-    prediction = model.predict(X)
-    for predicted, label, id in zip(prediction.tolist(), y.tolist(), ids.tolist()):
-        expected = np.argmax(label)
-        predicted = np.argmax(predicted)
-        item = (id, expected, predicted)
-        if expected == predicted:
-            correct.append(item)
-        else:
-            wrong.append(item)
+    # model.load_weights('../model/%s-%d' % (config.model_name, int(sys.argv[1])))
 
-    print 'correct:'
-    for id, expected, predicted in correct:
-        print id, 'expected =', id2building[expected], 'predicted =', id2building[predicted]
-    print 'wrong:'
-    for id, expected, predicted in wrong:
-        print id, 'expected =', id2building[expected], 'predicted =', id2building[predicted]
+    # score = model.evaluate(X, y)
+    # print 'score:', score
 
-    gen_markdown(correct, wrong)
+    # correct = []
+    # wrong = []
+    # prediction = model.predict(X)
+    # for predicted, label, id in zip(prediction.tolist(), y.tolist(), ids.tolist()):
+    #     expected = np.argmax(label)
+    #     predicted = np.argmax(predicted)
+    #     item = (id, expected, predicted)
+    #     if expected == predicted:
+    #         correct.append(item)
+    #     else:
+    #         wrong.append(item)
+
+    # print 'correct:'
+    # for id, expected, predicted in correct:
+    #     print id, 'expected =', id2building[expected], 'predicted =', id2building[predicted]
+    # print 'wrong:'
+    # for id, expected, predicted in wrong:
+    #     print id, 'expected =', id2building[expected], 'predicted =', id2building[predicted]
+
+    # gen_markdown(correct, wrong)

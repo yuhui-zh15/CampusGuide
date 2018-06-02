@@ -22,7 +22,7 @@ def crop(img, std_size, mode='CV'):
     scale_y = std_height / float(height)
     scale = max(scale_x, scale_y)
     new_shape = (int(width * scale + 0.5), int(height * scale + 0.5))
-    img = cv2.resize(img, new_shape)
+    img = cv2.resize(img, new_shape, interpolation=cv2.INTER_CUBIC)
     width, height = new_shape
     left = (width - std_width) / 2
     top = (height - std_height) / 2

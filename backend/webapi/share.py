@@ -7,7 +7,7 @@ import numpy as np
 from PIL import Image, ImageFont, ImageDraw
 
 from webapi import ASSETS_DIR, ASSETS_FONTS_DIR, ASSETS_IMAGES_DIR, ASSETS_TEMPLATE_DIR
-from webapi import imutils
+import imutils
 
 
 def to_unicode(string):

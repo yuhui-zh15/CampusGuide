@@ -12,7 +12,7 @@ from keras.layers import Dense, Activation, Convolution2D, MaxPooling2D, Flatten
 def model_fn(config):
     model = Sequential()
     model.add(Convolution2D(                        # 0
-        batch_input_shape=(None, 640, 360, 3),
+        batch_input_shape=(None, config.height, config.width, 3),
         filters=32,
         kernel_size=5,
         strides=1,
@@ -28,7 +28,7 @@ def model_fn(config):
 
     # 160 x 90 x 32
     model.add(Convolution2D(                        # 3
-        batch_input_shape=(None, 160, 90, 32),
+        batch_input_shape=(None, config.height/4, config.width/4, 32),
         filters=64,
         kernel_size=5,
         strides=1,
@@ -55,4 +55,41 @@ def model_fn(config):
         metrics=['accuracy'])
     
     return model
+
+def model_vgg19_fn(config):
+    base_model = VGG19(weights = 'imagenet', include_top = False)
+    x = base_model.output
+    x = GlobalAveragePooling2D()(x)
+    x = Dense(1024, activation='relu')(x)
+    predictions = Dense(config.num_of_class, activation='softmax')(x)
+    model = Model(inputs=base_model.input, outputs=predictions)
+    
+    for layer in base_model.layers:
+        layer.trainable = False
+
+    sgd = SGD(lr=config.lr, decay=config.decay, momentum=config.mm, nesterov=True)
+    model.compile(loss = 'categorical_crossentropy', 
+            optimizer = sgd,
+            metrics=['accuracy'])
+
+    """
+    for layer in base_model.layers[-2:]:
+        layer.trainable = True
+    
+    sgd = SGD(lr=lr, decay=decay, momentum=mm, nesterov=True)
+    model.compile(loss = 'categorical_crossentropy', 
+            optimizer = 'sgd',
+            metrics=['accuracy'])
+    """
+
+    return model
+    
+    """
+    #model.fit_generator() # to be filled
+    model.fit(X_train, y_train, batch_size = bs, nb_epoch=1, verbose=1)
+
+
+    score = model.evaluate(X_test, y_test, verbose=0)
+    print "test:", score
+    """
 
