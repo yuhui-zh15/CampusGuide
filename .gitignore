@@ -4,6 +4,7 @@
 **.trash/
 **.cache/
 model/
+images/
 dataset/
 backend/**.png
 backend/**.md
