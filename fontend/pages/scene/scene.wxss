@@ -1,38 +1,62 @@
-/**index.wxss**/
-.container {
-  height: 1140rpx;
+/* pages/image/demo3/index.wxss */
+.img-list3{
+    width: 100%;
 }
-
-.photo {
-  flex-direction: row;
-  display: flex;
-  height: 350rpx;
-  width: 100%;
-  /* background: lightgray; */
-  margin-bottom: 10rpx;
+.img-list3 .ul .li{
+    width: 92.5%;
+    height: 645rpx;
+    overflow: hidden;
+    margin:30rpx;
+    background-color: #666666;
+     border-radius: 2%; 
 }
-
-
-.left {
-  display: flex;
-  width: 15%;
-  height: 100%;
-  background: #eeeeee;
-  color: gray;  
-  writing-mode: vertical-lr;
-  text-align: center;
-  justify-content: center; 
-  align-items: center;
+.img-list3 .ul .li .image{
+    width: 720rpx;
+    height: 500rpx;
+    overflow: hidden;
+    border-radius: 2%; 
 }
-
-.right {
-  display: flex;
-  width: 85%;
-  height: 100%;
-  /* background: greenyellow; */
+.img-list3 .ul .li .image image{
+    width: 720rpx;
+    height: 500rpx;
+    border-radius: 2%;
 }
-
-.right image {
-  height: 100%;
-  width: 100%;
+.img-list3 .ul .li .title{
+    width: 94%;
+    margin-top: 20rpx;
+    padding:0 3%;
+    height: 35rpx;
+    font-size: 14rpx;
+    line-height: 35rpx;
+    color:#fff;
+}
+.img-list3 .ul .li .info{
+    width: 94%;
+    padding:0 3%; 
+    height: 40rpx;
+    font-size: 40rpx;
+    margin-top: 30rpx;
+    /* line-height: 20rpx; */
+    /* overflow: hidden; */
+    color:#fff;
+}
+.img-list3 .ul .li .other{
+    width: 94%;
+    padding:0 3%;
+    height: 30rpx;
+    line-height: 30rpx;
+    overflow: hidden;
+    color:#fff;
+}
+.img-list3 .ul .li .other .left{
+    float:left;
+}
+.img-list3 .ul .li .other image{
+    float:left;
+    width: 15rpx;
+    height: 15rpx;
+    margin-top:7.5rpx;
+}
+.img-list3 .ul .li .other .right{
+    float:right;
 }

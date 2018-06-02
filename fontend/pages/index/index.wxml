@@ -1,7 +1,11 @@
-<view class="container">
-  <map show-location latitude="{{latitude}}" longitude="{{longitude}}">
+<view class="tui-map">
+  <map id="map" longitude="{{currentLo}}" latitude="{{currentLa}}" scale="{{scale}}" markers="{{markers}}" polyline="{{polyline}}"  include-points="{{includePoints}}" show-location style="width: 100%; height: 100%;">
     <cover-view class="upload">
       <cover-image src="../../images/photo.png" bindtap="chooseImg"></cover-image>
     </cover-view>
   </map>
-</view>  
+</view>
+  <view class="tui-map-search" bindtap="getAddress">
+   <icon size='20' type='search' class='tui-map-search-icon'></icon> 
+  <input class="tui-map-input" placeholder="搜索" focus="{{focusStatus}}"></input>
+</view>

@@ -8,7 +8,7 @@
     "pages/me/me"
   ],
   "window":{
-    "backgroundColor": "#31a030",
+    "backgroundColor": "#ffffff",
     "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#4bbc93",
     "navigationBarTitleText": "乐游",

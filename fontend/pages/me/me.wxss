@@ -21,6 +21,7 @@
 }
 
 .usermotto {
+  margin: 30rpx;
   margin-top: 100rpx;
   padding-left: 30rpx;
   padding-right: 30rpx;
