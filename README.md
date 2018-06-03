@@ -1,16 +1,16 @@
-# CampusGuide
+# 乐游
 
-Project for AI Practice 2018.
+#### 说明
 
-## BUGS
+- report目录：包含项目总结、选题报告、问卷数据
+- backend目录：完整的后端代码（不含数据），包含服务器框架、算法框架和测试框架
+- frontend目录：完整的前端代码（含数据），微信小程序开发
 
-1. Model performance:
-    - Images for "文图" and "三教" are never correctly predicted (in baidu pics)
-    - Images for "校史馆" and "新清华学堂" are too similar (may be some wrong labels) 
+#### 作者
 
-## TODO
+张钰晖，2015011372，yuhui-zh15@mails.tsinghua.edu.cm
 
-1. 模型调优（是否可以按地点训练？）
-2. 临近地点推荐（optional）
-3. 类似朋友圈的保存历史截图的功能（optional）
-4. 为图片生成文字（optional）
+周正平，2015011314，zhouzp15@mails.tsinghua.edu.cn
+
+陈经基，2015011358，greenclouds@foxmail.com
+
