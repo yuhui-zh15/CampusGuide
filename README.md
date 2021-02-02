@@ -10,7 +10,7 @@ Imagine you are a tourist in a foreign land and you see a building that looks im
 
 |       Step1: Take a photo of the building of interest        | Step2: Upload and get the name and top stories about the place |      Step 3: Have fun and share a poster with friends!       |
 | :----------------------------------------------------------: | :----------------------------------------------------------: | :----------------------------------------------------------: |
-| <img src="README.assets/image-20210201163931258.png" style="width: 230px;height: 400px"> | <img src="README.assets/image-20210201163942090.png" style="width: 230px;height: 400px"> | <img src="README.assets/image-20210201164105953.png" style="width: 230px;height: 400px"> |
+| <img src="README.assets/image-20210201163931258.png" width="230" height="400"> | <img src="README.assets/image-20210201163942090.png" width="230" height="400"> | <img src="README.assets/image-20210201164105953.png" width="230" height="400"> |
 
 ## How it Works
 
