@@ -1,6 +1,7 @@
 # HappyTour
 
-Project for *Artificial Intelligence: Techniques and Practices (2018)*.
+Project for *Artificial Intelligence: Techniques and Practices (2018)*.<br>
+Yuhui Zhang\*, Zhengping Zhou\*, Jingji Chen*
 
 ## Introduction
 
